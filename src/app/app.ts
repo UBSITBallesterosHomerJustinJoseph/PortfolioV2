@@ -1,12 +1,19 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('Portfoliov2');
+  // Controls the navbar collapse state without requiring Bootstrap JS
+  readonly isNavOpen = signal(false);
+
+  toggleNav() {
+    this.isNavOpen.set(!this.isNavOpen());
+  }
 }
